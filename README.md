@@ -62,9 +62,11 @@ http://localhost:9566
 ## Table Columns
 - id(integer)
 - task(text)
-- due_date(date)
+- date_added(date)
 - complete(boolean)
 
 ---------------------------------------------------------------------------------------------------------------------------------
-
+#img
+-list of tasks:http://localhost:9566/Todo App
+-update the task:http://localhost:9566/update/4
 
