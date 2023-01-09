@@ -66,7 +66,5 @@ http://localhost:9566
 - complete(boolean)
 
 ---------------------------------------------------------------------------------------------------------------------------------
-#img
--list of tasks:http://localhost:9566/Todo App
--update the task:http://localhost:9566/update/4
+
 
