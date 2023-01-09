@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Todo App</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+</head>
+<body>
+<div class="container">
+<div class="navbar" >
+    <h1><a href="{{ url_for('index')}}">TODO LIST</a></h1>&ensp;
+
+    <ul class="navbar-nav mr-auto">
+
+    <li class="nav-item dropdown">
+     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Sort
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="{{ url_for('sortedAsc') }}">Ascending By Date</a>
+          <a class="dropdown-item" href="{{ url_for('sortedDesc') }}">Descending By Date</a>
+        </div>
+         </li>
+</ul>
+
+    <form action="{{ url_for('search') }}" method="POST" style="float:right">
+        <input type="search" name="search_name" placeholder="search here">
+        <input type="submit" value="Search">
+    </form>
+</div>
+        <center>
+        <form action="/add" method="POST">
+            <label>New task:</label>
+            <input type="text" name="task_name"><br>
+            <label>Date:</label>
+            <input type="date" name="date_added"><br>
+            <input type="submit" value="Add">
+        </form>
+        </center>
+
+    <h3>Tasks</h3>
+    <ul >
+        {% for task in undone %}
+        <li style="font-size: 15pt">{{task.task}} &emsp; {{task.date_added}}<br><a href="{{ url_for('done',id=task.id) }}">Done</a> &ensp; <a href="{{ url_for('update',id=task.id) }}">Update</a> &ensp; <a href="{{ url_for('delete',id=task.id) }}">Delete</a> </li>
+        {% endfor %}
+
+        {% for task in asc %}
+        <li style="font-size: 15pt">{{task.task}} &emsp; {{task.date_added}}<br><a href="{{ url_for('done',id=task.id) }}">Done</a> &ensp; <a href="{{ url_for('update',id=task.id) }}">Update</a> &ensp; <a href="{{ url_for('delete',id=task.id) }}">Delete</a> </li>
+        {% endfor %}
+
+
+        {% for task in desc %}
+        <li style="font-size: 15pt">{{task.task}} &emsp; {{task.date_added}}<br><a href="{{ url_for('done',id=task.id) }}">Done</a> &ensp; <a href="{{ url_for('update',id=task.id) }}">Update</a> &ensp; <a href="{{ url_for('delete',id=task.id) }}">Delete</a> </li>
+        {% endfor %}
+
+        {% for task in search_tasks %}
+        <li style="font-size: 15pt">{{task.task}} &emsp; {{task.date_added}}<br><a href="{{ url_for('done',id=task.id) }}">Done</a> &ensp; <a href="{{ url_for('update',id=task.id) }}">Update</a> &ensp; <a href="{{ url_for('delete',id=task.id) }}">Delete</a> </li>
+        {% endfor %}
+    </ul>
+
+
+    <h3>Done</h3>
+    <ul>
+        {% for task in done %}
+        <li style="font-size: 15pt">{{task.task}} &emsp; <a href="{{ url_for('delete',id=task.id) }}">Delete</a></li>
+        {% endfor %}
+    </ul>
+
+</div>
+</body>
+</html>
