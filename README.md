@@ -9,7 +9,7 @@ method : get, post
 * Update task
 * Sort Task by date
 * Search tasks
-* Displays tasks for a selected date
+
 
 
 Database used is SQLite
